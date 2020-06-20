@@ -4,24 +4,28 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String RESULT_KEY = "result_key";
+
     TextView panel;
     private double result, firstNumber, secondNumber;
     private String operation;
     String intermediateNumber = "";
     boolean isOperation = false;
-    private String inputedText = "";
+    String res;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         panel = findViewById(R.id.panel);
+
     }
 
     @Override
@@ -147,9 +151,24 @@ public class MainActivity extends AppCompatActivity {
                         result = firstNumber / secondNumber;
                         break;
                 }
+                res=String.valueOf(result);
                 panel.setText(result + "");
                 isOperation = true;
                 break;
         }
+
+        Button save = findViewById(R.id.buttonSave);
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (res!=null) {
+                    Intent intent = getIntent();
+                    intent.putExtra(RESULT_KEY, res);
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
+            }
+        });
+
     }
 }

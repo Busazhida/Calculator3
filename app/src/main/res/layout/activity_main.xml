@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="320dp"
         android:text="0.0"
         android:textSize="50sp" />
 
@@ -193,13 +193,23 @@
         android:background="@android:color/white">
         <Button
             android:id="@+id/buttonEqual"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
             android:text="="
             android:textSize="35sp"
             android:textColor="@android:color/white"
             android:background="@android:color/holo_orange_light"
-            android:onClick="onClick_buttonLogic"
-            />
+            android:onClick="onClick_buttonLogic" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="205dp"
+            android:layout_height="wrap_content"
+            android:text="SaVE"
+            android:layout_marginLeft="5dp"
+            android:textSize="35sp"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_orange_light"/>
+
     </LinearLayout>
 </LinearLayout>
