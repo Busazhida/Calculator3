@@ -2,6 +2,8 @@ package com.example.calculator;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,13 +15,14 @@ public class CalculatorActivity extends AppCompatActivity {
     private String savedNum;
     public static final String INTENT_KEY = "intent_key";
     private static final int CALCULATOR_ACTIVITY = 20;
+    RecyclerView recyclerView;
+    MainAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator);
-
-
+        recyclerView = findViewById(R.id.recycler_view);
         Button calculator = findViewById(R.id.calculator);
         calculator.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +44,7 @@ public class CalculatorActivity extends AppCompatActivity {
                 }
             }
         });
-
+        adapter = new MainAdapter();
     }
 
 
@@ -50,6 +53,8 @@ public class CalculatorActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CALCULATOR_ACTIVITY && resultCode == RESULT_OK && data != null) {
             savedNum = data.getStringExtra(MainActivity.RESULT_KEY);
+            adapter.saveinData(savedNum);
+            recyclerView.setAdapter(adapter);
         }
     }
 }

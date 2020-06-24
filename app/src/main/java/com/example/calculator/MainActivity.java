@@ -3,6 +3,7 @@ package com.example.calculator;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private double result, firstNumber, secondNumber;
     private String operation;
     String intermediateNumber = "";
+    RecyclerView recyclerView;
     boolean isOperation = false;
     String res;
 
@@ -151,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                         result = firstNumber / secondNumber;
                         break;
                 }
-                res=String.valueOf(result);
+                res = String.valueOf(result);
                 panel.setText(result + "");
                 isOperation = true;
                 break;
@@ -161,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (res!=null) {
+                if (res != null) {
                     Intent intent = getIntent();
                     intent.putExtra(RESULT_KEY, res);
                     setResult(RESULT_OK, intent);
